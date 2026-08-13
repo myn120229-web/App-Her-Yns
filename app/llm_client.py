@@ -1,10 +1,13 @@
 """
-Wrapper around a local Ollama server (http://127.0.0.1:11434).
+Wrapper around any OpenAI-compatible Chat Completions API.
 
-Everything in this app that needs the model goes through here so there's
-one place that: picks the model, forces JSON output when we need structured
-data back, retries on malformed JSON, and fails loudly rather than silently
-if Ollama isn't running.
+Supports:
+- Local Ollama (default, http://127.0.0.1:11434/v1)
+- Any hosted OpenAI-compatible endpoint (Zyloo, OpenAI, etc.)
+
+Endpoint + key + model are configurable at runtime via the Telegram bot
+(/setapi, /setmodel) and persisted to data/llm_config.json so the user can
+point the app at any provider they like.
 """
 from __future__ import annotations
 
@@ -12,26 +15,63 @@ import json
 import os
 import re
 import requests
+from pathlib import Path
 
-OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")
-MODEL = os.environ.get("UNEMPLOYED_MODEL", "qwen2.5:3b")
+CONFIG_PATH = Path(__file__).resolve().parent.parent / "data" / "llm_config.json"
+
+DEFAULTS = {
+    "base_url": os.environ.get("LLM_BASE_URL", "http://127.0.0.1:11434/v1"),
+    "api_key": os.environ.get("LLM_API_KEY", "ollama"),
+    "model": os.environ.get("UNEMPLOYED_MODEL", "qwen2.5:3b"),
+}
 
 
-class OllamaNotRunning(Exception):
-    pass
+def _load_config() -> dict:
+    if CONFIG_PATH.exists():
+        try:
+            with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+                saved = json.load(f)
+            return {**DEFAULTS, **saved}
+        except Exception:
+            pass
+    return dict(DEFAULTS)
+
+
+def _save_config(cfg: dict):
+    CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    tmp = CONFIG_PATH.with_suffix(".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=2, ensure_ascii=False)
+    tmp.replace(CONFIG_PATH)
+
+
+def get_config() -> dict:
+    return _load_config()
+
+
+def set_config(base_url: str, api_key: str, model: str):
+    cfg = {"base_url": base_url, "api_key": api_key, "model": model}
+    _save_config(cfg)
+    return cfg
 
 
 def is_available() -> bool:
+    cfg = _load_config()
     try:
-        r = requests.get(f"{OLLAMA_URL}/api/tags", timeout=2)
-        return r.status_code == 200
+        r = requests.get(f"{cfg['base_url'].rstrip('/')}/models",
+                         headers={"Authorization": f"Bearer {cfg['api_key']}"},
+                         timeout=5)
+        return r.status_code in (200, 401)  # 401 still means the endpoint is up
     except requests.RequestException:
-        return False
+        # Ollama's /models may not exist; fall back to a chat probe
+        try:
+            chat("You are a test.", "reply ok", temperature=0)
+            return True
+        except Exception:
+            return False
 
 
 def _extract_json(text: str) -> dict | list:
-    """Models sometimes wrap JSON in prose or code fences. Pull the first
-    {...} or [...] block out and parse it."""
     text = text.strip()
     text = re.sub(r"^```(json)?", "", text.strip())
     text = re.sub(r"```$", "", text.strip())
@@ -40,7 +80,6 @@ def _extract_json(text: str) -> dict | list:
         return json.loads(text)
     except json.JSONDecodeError:
         pass
-    # Fall back to grabbing the largest {...} or [...] span.
     for open_c, close_c in [("{", "}"), ("[", "]")]:
         start = text.find(open_c)
         end = text.rfind(close_c)
@@ -54,26 +93,28 @@ def _extract_json(text: str) -> dict | list:
 
 
 def chat(system: str, user: str, json_mode: bool = False, temperature: float = 0.2) -> str:
-    if not is_available():
-        raise OllamaNotRunning(
-            "Ollama isn't responding on 127.0.0.1:11434. In the Codespace terminal run: "
-            "bash .devcontainer/start_ollama.sh"
-        )
+    cfg = _load_config()
+    url = f"{cfg['base_url'].rstrip('/')}/chat/completions"
     payload = {
-        "model": MODEL,
+        "model": cfg["model"],
         "messages": [
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
+        "temperature": temperature,
         "stream": False,
-        "options": {"temperature": temperature},
     }
     if json_mode:
-        payload["format"] = "json"
+        payload["response_format"] = {"type": "json_object"}
 
-    r = requests.post(f"{OLLAMA_URL}/api/chat", json=payload, timeout=180)
+    r = requests.post(
+        url,
+        headers={"Authorization": f"Bearer {cfg['api_key']}", "Content-Type": "application/json"},
+        json=payload,
+        timeout=180,
+    )
     r.raise_for_status()
-    return r.json()["message"]["content"]
+    return r.json()["choices"][0]["message"]["content"]
 
 
 def chat_json(system: str, user: str, temperature: float = 0.2, retries: int = 2) -> dict | list:
