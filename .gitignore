@@ -1,0 +1,8 @@
+data/profile.json
+data/companies.json
+data/jobs.json
+data/generated/
+__pycache__/
+*.pyc
+.venv/
+*.tmp
