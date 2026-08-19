@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p data/generated
+RUN cp .env.example .env
 
-EXPOSE 8000
+EXPOSE 8787
 
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python3", "server.py", "--host", "0.0.0.0", "--port", "8787"]
