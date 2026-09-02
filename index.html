@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Younes Nazarian — ML Engineer & Data Scientist</title>
+<meta name="description" content="Younes Nazarian — ML Engineer and Data Scientist specializing in predictive modeling, Python, and AI automation. Available for remote freelance projects.">
+<meta name="keywords" content="ML Engineer, Data Scientist, Python Developer, Machine Learning, Scikit-learn, Pandas, AI Automation, Remote Freelance">
+<meta name="author" content="Younes Nazarian">
+<meta property="og:title" content="Younes Nazarian — ML Engineer & Data Scientist">
+<meta property="og:description" content="Always Training. Always Growing. ML Engineer specializing in predictive modeling and data science.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Younes Nazarian — ML Engineer">
+<link rel="canonical" href="https://younesnazarian.com">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Younes Nazarian","jobTitle":"Machine Learning Engineer","description":"ML Engineer and Data Scientist specializing in Python, Scikit-learn, and AI automation","knowsAbout":["Machine Learning","Data Science","Python","AI Automation"],"url":"https://younesnazarian.com"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@900&family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS ===== */
+:root{--bg-deepest:#030A1C;--bg-navy:#0B1A3C;--blue-1:#1040A8;--blue-2:#2258C0;--blue-3:#3870D8;--blue-4:#5888E8;--text-primary:#EFF6FF;--text-secondary:#7A9CC0;--accent-gold:#F0C040;--available-green:#00C864;--footer-bg:#020710;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg-deepest);color:var(--text-primary);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{max-width:100%;display:block}
+button,input,textarea{font:inherit}
+:focus-visible{outline:2px solid var(--accent-gold);outline-offset:2px}
+::selection{background:var(--blue-3);color:#fff}
+/* progress */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--accent-gold);width:0;z-index:9999;transition:width .1s linear}
+/* cursor */
+.custom-cursor{position:fixed;width:12px;height:12px;border:1.5px solid rgba(255,255,255,.6);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
+.custom-cursor.hover{width:40px;height:40px;background:rgba(80,130,255,.15);border-color:rgba(80,130,255,.4)}
+@media(max-width:1024px){.custom-cursor{display:none}}
+/* glass */
+.glass{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(255,255,255,.07) 0%,rgba(80,130,220,.04) 100%);border-top:1px solid rgba(255,255,255,.18);border-left:1px solid rgba(255,255,255,.12);border-right:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.04);border-radius:18px;backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 12px 50px rgba(0,0,0,.45),0 2px 0 rgba(255,255,255,.07) inset}
+.glass::before{content:'';position:absolute;top:0;left:10%;width:80%;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.28),transparent);pointer-events:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;backdrop-filter:blur(8px);font-size:13px;color:var(--text-primary);transition:all .2s}
+.chip:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(80,130,220,.08));border:1px solid rgba(255,255,255,.18);border-radius:50px;color:var(--text-primary);font-weight:600;font-size:15px;backdrop-filter:blur(14px);box-shadow:0 4px 24px rgba(56,112,216,.25);cursor:pointer;transition:all .2s}
+.btn-primary:hover{box-shadow:0 6px 32px rgba(56,112,216,.4);border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:50px;color:var(--text-primary);font-weight:600;font-size:15px;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+@media(min-width:1440px){.container{max-width:1400px}}
+section{padding:90px 0;position:relative}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-gold);font-weight:700;margin-bottom:8px}
+.section-title{font-size:clamp(28px,3.5vw,44px);font-weight:600;color:var(--text-primary);line-height:1.15;margin-bottom:16px}
+.reveal{clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease)}
+.reveal.visible{clip-path:inset(0 0 0 0)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;transition:all .3s}
+nav.scrolled{background:linear-gradient(135deg,rgba(3,10,28,.85),rgba(11,26,60,.7));backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-logo{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(56,112,216,.3),rgba(16,64,168,.3));border:1px solid rgba(255,255,255,.15);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:16px;backdrop-filter:blur(10px)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:14px;color:var(--text-secondary);position:relative;padding:4px 0;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary)}
+.nav-links a.active::after{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--accent-gold);border-radius:50%}
+.available-badge{display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(0,200,100,.1);border:1px solid rgba(0,200,100,.25);border-radius:50px;font-size:13px;color:#6EE7A0;cursor:pointer}
+.available-dot{width:8px;height:8px;background:var(--available-green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.7}}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.hamburger span{width:24px;height:2px;background:var(--text-primary);border-radius:2px}
+.mobile-overlay{position:fixed;inset:0;z-index:200;background:rgba(3,10,28,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-overlay.open{opacity:1;pointer-events:all}
+.mobile-overlay a{font-size:28px;font-weight:600}
+.mobile-overlay .close-btn{position:absolute;top:20px;right:24px;font-size:32px;background:none;border:none;color:var(--text-primary);cursor:pointer}
+@media(max-width:768px){.nav-links,.available-badge{display:none}.hamburger{display:flex}}
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 65% 50%,rgba(11,26,60,.6) 0%,transparent 70%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:55% 45%;gap:32px;align-items:center;width:100%;position:relative;z-index:1}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr;text-align:center}.hero-panels{display:none!important}}
+.hero-eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-gold);font-weight:700;margin-bottom:12px}
+.hero-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(52px,7vw,96px);color:var(--text-primary);line-height:.9;letter-spacing:-.02em}
+@media(max-width:767px){.hero-name{font-size:clamp(32px,8vw,52px)}}
+.hero-name .w-younes,.hero-name .w-nazarian{display:inline-block}
+.hero-tagline{font-size:clamp(14px,1.5vw,18px);letter-spacing:.25em;text-transform:uppercase;color:var(--accent-gold);font-weight:700;margin:14px 0 16px}
+.hero-bio{font-size:17px;color:var(--text-secondary);max-width:480px;line-height:1.6}
+@media(max-width:768px){.hero-bio{margin:0 auto}}
+.hero-ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+@media(max-width:768px){.hero-ctas{justify-content:center}}
+.hero-panels-wrap{position:relative;height:420px;perspective:1200px}
+.panel{position:absolute;left:50%;top:50%;width:220px;height:300px;border-radius:16px;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,.4);will-change:transform}
+.p1{background:linear-gradient(135deg,#0d3a9a,#1a4fc4)}
+.p2{background:linear-gradient(135deg,#1a4fbe,#2d6ad4)}
+.p3{background:linear-gradient(135deg,#2d66cc,#4a85ec)}
+.p4{background:linear-gradient(135deg,#4a85ec,#6a9af0)}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px}
+.scroll-hint span{width:12px;height:12px;border-right:2px solid var(--accent-gold);border-bottom:2px solid var(--accent-gold);transform:rotate(45deg);opacity:0;animation:chevron 1.5s infinite}
+.scroll-hint span:nth-child(2){animation-delay:.3s}
+@keyframes chevron{0%{transform:translateY(-6px) rotate(45deg);opacity:0}50%{opacity:1}100%{transform:translateY(8px) rotate(45deg);opacity:0}}
+#particles{position:absolute;inset:0;pointer-events:none}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:40% 60%;gap:48px;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.profile-frame{position:relative;background:linear-gradient(135deg,rgba(56,112,216,.15),rgba(16,64,168,.15));border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:8px;backdrop-filter:blur(10px);animation:breathing 4s ease-in-out infinite}
+@keyframes breathing{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+.profile-frame img{width:100%;border-radius:18px;aspect-ratio:1;object-fit:cover;background:var(--bg-navy)}
+.profile-stats{display:flex;margin-top:16px}
+.profile-stats .stat{flex:1;text-align:center;padding:12px 8px}
+.profile-stats .stat strong{display:block;font-size:22px;font-weight:600}
+.profile-stats .stat span{font-size:11px;color:var(--text-secondary);letter-spacing:.05em;text-transform:uppercase}
+.profile-stats .stat+.stat{border-left:1px solid rgba(255,255,255,.12)}
+.quote-card{margin-top:20px;padding:20px;font-style:italic;color:var(--text-secondary);font-size:15px}
+.quote-card cite{display:block;margin-top:8px;font-style:normal;font-size:12px;color:var(--accent-gold)}
+.about-text{color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:12px}
+/* SKILLS */
+.pipeline{display:flex;flex-direction:column;gap:18px;margin-top:32px}
+.pipeline-layer{padding:20px 24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.layer-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-gold);font-weight:700;min-width:130px}
+.pipeline-line{height:18px;position:relative;display:flex;align-items:center;justify-content:center}
+.pipeline-line::before{content:'';position:absolute;left:15%;right:15%;height:1px;background:linear-gradient(to right,transparent,var(--blue-3),transparent);opacity:.5}
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+@media(max-width:1024px){.projects-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.projects-grid{grid-template-columns:1fr}}
+.project-card{padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .3s,border-color .3s;position:relative}
+.project-card:hover{transform:translateY(-6px);border-top-color:rgba(255,255,255,.32)}
+.project-card .domain{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-4)}
+.project-card h3{font-size:17px;font-weight:600;line-height:1.3}
+.project-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+.divider{height:1px;background:rgba(255,255,255,.08)}
+.metrics{display:flex;gap:16px}
+.metrics .m strong{font-size:20px}
+.metrics .m span{font-size:11px;color:var(--text-secondary);display:block}
+.stack-row{display:flex;flex-wrap:wrap;gap:6px}
+.stack-row span{font-size:11px;padding:4px 8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:var(--text-secondary)}
+.project-links{display:flex;gap:16px;margin-top:6px}
+.project-links a{font-size:13px;color:var(--text-secondary);transition:color .2s}
+.project-links a:hover{color:var(--accent-gold)}
+.watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.04);pointer-events:none;opacity:0;transition:opacity .3s;white-space:pre;overflow:hidden}
+.project-card:hover .watermark{opacity:.07}
+.accordion{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);font-size:13px;color:var(--text-secondary);line-height:1.6}
+.accordion.open{max-height:300px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)}
+/* PROCESS */
+.process-track{display:flex;align-items:stretch;gap:0;margin-top:32px;overflow-x:auto;padding-bottom:8px}
+.process-step{flex:1;min-width:180px;padding:24px;text-align:center;transition:all .3s}
+.process-step:hover{border-top-color:rgba(255,255,255,.3)}
+.process-step h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-gold);margin-bottom:6px}
+.process-step h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.process-step p{font-size:13px;color:var(--text-secondary);line-height:1.5}
+.process-arrow{width:36px;display:flex;align-items:center;justify-content:center;color:var(--blue-3);font-size:18px;flex-shrink:0}
+@media(max-width:768px){.process-track{flex-direction:column}.process-arrow{transform:rotate(90deg);width:100%;height:28px}}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:28px}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+.contact-links{display:flex;flex-direction:column;gap:12px}
+.contact-links a{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;font-size:14px;transition:all .2s}
+.contact-links a:hover{border-top-color:rgba(255,255,255,.3)}
+.form-group{margin-bottom:16px}
+.form-group input,.form-group textarea{width:100%;padding:12px 0;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.2);color:var(--text-primary);font-size:14px;outline:none;transition:border-color .3s}
+.form-group input:focus,.form-group textarea:focus{border-bottom-color:var(--accent-gold)}
+.form-group textarea{resize:vertical;min-height:80px}
+.btn-gold{padding:12px 28px;background:transparent;border:1px solid var(--accent-gold);border-radius:50px;color:var(--accent-gold);font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.btn-gold:hover{background:rgba(240,192,64,.1);box-shadow:0 4px 20px rgba(240,192,64,.2)}
+.btn-gold.loading{opacity:.7;pointer-events:none}
+.btn-gold .spinner{display:none;width:16px;height:16px;border:2px solid rgba(240,192,64,.3);border-top-color:var(--accent-gold);border-radius:50%;animation:spin .7s linear infinite}
+.btn-gold.loading .spinner{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* FOOTER */
+footer{padding:32px 0;background:var(--footer-bg);margin-top:40px;position:relative}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--blue-3),transparent)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-tagline{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-gold)}
+.footer-copy{font-size:12px;color:var(--text-secondary)}
+.footer-nav{display:flex;gap:16px}
+.footer-nav a{font-size:13px;color:var(--text-secondary);transition:color .2s}
+.footer-nav a:hover{color:var(--text-primary)}
+/* entrance */
+.w-younes{transform:translateX(-40px);opacity:0;animation:slideL .6s var(--ease) forwards}
+.w-nazarian{transform:translateX(40px);opacity:0;animation:slideR .8s var(--ease) .15s forwards}
+.hero-tagline{opacity:0;letter-spacing:.05em;animation:taglineIn .6s var(--ease) .5s forwards}
+.hero-bio,.hero-ctas{opacity:0;transform:translateY(12px);animation:fadeUp .4s var(--ease) .9s forwards}
+@keyframes slideL{to{transform:translateX(0);opacity:1}}
+@keyframes slideR{to{transform:translateX(0);opacity:1}}
+@keyframes taglineIn{to{opacity:1;letter-spacing:.25em}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{clip-path:none;opacity:1}}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="progress"></div>
+<div class="custom-cursor" id="cursor"></div>
+
+<header>
+<nav id="nav">
+  <a href="#hero" class="nav-logo" aria-label="Home">YN</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#skills">Stack</a>
+    <a href="#projects">Projects</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="available-badge" aria-label="Available for work"><span class="available-dot"></span> Available for Work</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay">
+  <button class="close-btn" id="closeMenu" aria-label="Close">×</button>
+  <a href="#about">About</a>
+  <a href="#skills">Stack</a>
+  <a href="#projects">Projects</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+</div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particles"></canvas>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">ML Engineer · Data Scientist</div>
+        <h1 class="hero-name"><span class="w-younes">Younes</span> <span class="w-nazarian">Nazarian</span></h1>
+        <div class="hero-tagline">Always Training. Always Growing.</div>
+        <p class="hero-bio">I find the signal in your noise — and build systems that act on it.</p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#" class="btn-outline" onclick="alert('CV download — add your file at /assets/cv.pdf');return false">Download CV</a>
+        </div>
+      </div>
+      <div class="hero-panel-wrap" id="panelWrap">
+        <div class="panels hero-panels" style="position:relative;width:100%;height:420px;perspective:1200px">
+          <div class="panel p1" style="transform:translate(-50%,-50%) rotate(-18deg)"></div>
+          <div class="panel p2" style="transform:translate(-50%,-50%) rotate(-6deg) translateZ(20px)"></div>
+          <div class="panel p3" style="transform:translate(-50%,-50%) rotate(8deg) translateZ(40px)"></div>
+          <div class="panel p4" style="transform:translate(-50%,-50%) rotate(20deg) translateZ(60px)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" id="scrollHint"><span></span><span></span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+<div class="container">
+  <div class="about-grid">
+    <div>
+      <div class="profile-frame">
+        <img src="https://via.placeholder.com/400x400/0B1A3C/5888E8?text=YN" alt="Younes Nazarian — ML Engineer" loading="lazy">
+      </div>
+      <div class="profile-stats glass" style="border-radius:14px">
+        <div class="stat"><strong data-count="12">0</strong><span>Projects</span></div>
+        <div class="stat"><strong>ML / Data</strong><span>Focus</span></div>
+        <div class="stat"><strong>Active</strong><span>Status</span></div>
+      </div>
+      <div class="glass quote-card">“The goal is to turn data into information, and information into insight.”<cite>— Carly Fiorina</cite></div>
+    </div>
+    <div>
+      <div class="eyebrow">About</div>
+      <h2 class="section-title">I find patterns<br>where others see noise.</h2>
+      <p class="about-text">I'm a Machine Learning Engineer and Data Scientist based in Iran, building for remote teams worldwide. I work at the intersection of statistics, software engineering, and product thinking — where a model is only as good as the system around it.</p>
+      <p class="about-text">“Always Training. Always Growing.” isn't a slogan — it's how I work. Every dataset is a new curriculum. Every deployment is a new exam. The field moves fast; staying still is falling behind.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+<div class="container">
+  <div class="eyebrow">Capabilities</div>
+  <h2 class="section-title">The pipeline that turns raw data into decisions.</h2>
+  <div class="pipeline">
+    <div class="glass pipeline-layer">
+      <span class="layer-label">Data Layer</span>
+      <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">SQL</span><span class="chip">Jupyter</span>
+    </div>
+    <div class="pipeline-line"></div>
+    <div class="glass pipeline-layer">
+      <span class="layer-label">Modeling Layer</span>
+      <span class="chip">Scikit-learn</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">Statistics</span><span class="chip">Feature Eng.</span>
+    </div>
+    <div class="pipeline-line"></div>
+    <div class="glass pipeline-layer">
+      <span class="layer-label">Deploy & Automate</span>
+      <span class="chip">FastAPI</span><span class="chip">Streamlit</span><span class="chip">n8n</span><span class="chip">RAG</span><span class="chip">OpenAI API</span><span class="chip">Claude API</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+<div class="container">
+  <div class="eyebrow">Selected Work</div>
+  <h2 class="section-title">Three models. Real impact.</h2>
+  <div class="projects-grid">
+    <!-- P1 -->
+    <article class="glass project-card">
+      <div class="watermark">from sklearn.ensemble
+import RandomForestClassifier
+rf = RandomForestClassifier(n_estimators=200)</div>
+      <span class="domain">SaaS / Telecom</span>
+      <h3>Customer Churn Predictor — with Business Impact Dashboard</h3>
+      <p>End-to-end classifier that flags at-risk subscribers before they leave.</p>
+      <div class="divider"></div>
+      <div class="metrics"><div class="m"><strong>84%</strong><span>Recall (churn)</span></div><div class="m"><strong>$180k</strong><span>At-risk MRR flagged</span></div></div>
+      <div class="stack-row"><span>Python</span><span>Pandas</span><span>Scikit-learn</span><span>Seaborn</span></div>
+      <div class="project-links"><a href="https://github.com/myn120229-web" target="_blank" rel="noopener noreferrer">View on GitHub →</a><a href="#" class="case-toggle" data-target="c1">Case Study →</a></div>
+      <div class="accordion" id="c1">EDA uncovered tenure & contract type as top predictors. SMOTE balanced the 73/27 split. Tuned RF (200 trees, max_depth 12). Dashboard in Streamlit surfaces weekly risk cohorts for retention team.</div>
+    </article>
+    <!-- P2 -->
+    <article class="glass project-card">
+      <div class="watermark">import statsmodels.api as sm
+model = sm.tsa.ExponentialSmoothing
+model.fit(optimized=True)</div>
+      <span class="domain">E-Commerce / Retail</span>
+      <h3>Sales Forecasting Engine — Rossmann Stores</h3>
+      <p>Time-series forecaster across 1,115 stores with promo & calendar features.</p>
+      <div class="divider"></div>
+      <div class="metrics"><div class="m"><strong>&lt;12%</strong><span>MAPE</span></div><div class="m"><strong>−23%</strong><span>Est. stockouts</span></div></div>
+      <div class="stack-row"><span>Python</span><span>Time Series</span><span>Feature Eng.</span><span>Scikit-learn</span></div>
+      <div class="project-links"><a href="https://github.com/myn120229-web" target="_blank" rel="noopener noreferrer">View on GitHub →</a><a href="#" class="case-toggle" data-target="c2">Case Study →</a></div>
+      <div class="accordion" id="c2">Engineered promo, school-holiday & rolling-mean features. Gradient Boosting outperformed ARIMA by 18%. Forecast feeds an inventory recommender that cuts stockouts an estimated 23%.</div>
+    </article>
+    <!-- P3 -->
+    <article class="glass project-card">
+      <div class="watermark">from imblearn.over_sampling import SMOTE
+from sklearn.pipeline import Pipeline
+pipe = Pipeline([('smote',SMOTE())])</div>
+      <span class="domain">Fintech / Banking</span>
+      <h3>ML-Powered Credit Risk Scorer — with Explainability Layer</h3>
+      <p>Imbalanced-classification pipeline with SHAP-style explanations for compliance.</p>
+      <div class="divider"></div>
+      <div class="metrics"><div class="m"><strong>78%</strong><span>Precision (default)</span></div><div class="m"><strong>Auditable</strong><span>Explainability</span></div></div>
+      <div class="stack-row"><span>Sklearn Pipeline</span><span>SMOTE</span><span>PR Analysis</span><span>Explainability</span></div>
+      <div class="project-links"><a href="https://github.com/myn120229-web" target="_blank" rel="noopener noreferrer">View on GitHub →</a><a href="#" class="case-toggle" data-target="c3">Case Study →</a></div>
+      <div class="accordion" id="c3">Heavy class imbalance (92/8). Pipeline: impute → scale → SMOTE → calibrated classifier. Precision-recall threshold tuning at 78% precision. Explainability layer exports per-decision feature contributions for regulatory review.</div>
+    </article>
+  </div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="reveal">
+<div class="container">
+  <div class="eyebrow">How I Work</div>
+  <h2 class="section-title">A pipeline, not a checklist.</h2>
+  <div class="process-track">
+    <div class="glass process-step"><h4>01 — Intake</h4><h3>Understand the business problem</h3><p>Stakeholder interviews, KPI mapping, success criteria before any code.</p></div>
+    <div class="process-arrow">→</div>
+    <div class="glass process-step"><h4>02 — Analysis</h4><h3>Deep EDA & feature engineering</h3><p>Distributions, leakage checks, engineered signals that survive production.</p></div>
+    <div class="process-arrow">→</div>
+    <div class="glass process-step"><h4>03 — Modeling</h4><h3>Build, tune, validate</h3><p>Baselines → ensembles → rigorous CV. No leaderboard chasing.</p></div>
+    <div class="process-arrow">→</div>
+    <div class="glass process-step"><h4>04 — Delivery</h4><h3>Clean, documented, business-ready</h3><p>API or dashboard, tests, docs — handed off so the team can run it.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+<div class="container">
+  <h2 class="section-title">Let's build something that learns.</h2>
+  <p style="color:var(--text-secondary);font-size:15px">Available for freelance projects, internships, and remote roles.</p>
+  <div class="contact-grid">
+    <div class="contact-links">
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="glass">LinkedIn — Connect <span>↗</span></a>
+      <a href="https://github.com/myn120229-web" target="_blank" rel="noopener noreferrer" class="glass">GitHub — myn120229-web <span>↗</span></a>
+      <a href="mailto:younes@example.com" class="glass">Email — younes@example.com <span>↗</span></a>
+    </div>
+    <form id="contactForm" novalidate>
+      <div class="form-group"><input type="text" name="name" placeholder="Name" required aria-label="Name"></div>
+      <div class="form-group"><input type="email" name="email" placeholder="Email" required aria-label="Email"></div>
+      <div class="form-group"><textarea name="message" placeholder="Tell me about your project..." required aria-label="Message"></textarea></div>
+      <button type="submit" class="btn-gold" id="submitBtn"><span class="btn-label">Send Message</span> <span class="spinner"></span></button>
+      <p id="formStatus" style="margin-top:12px;font-size:13px;color:var(--text-secondary)" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footer-inner">
+  <div><div style="display:flex;align-items:center;gap:10px"><span class="nav-logo" style="width:36px;height:36px;font-size:14px">YN</span><strong style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:900">Younes Nazarian</strong></div><div class="footer-tagline" style="margin-top:4px">Always Training. Always Growing.</div></div>
+  <nav class="footer-nav" aria-label="Footer"><a href="#about">About</a><a href="#skills">Stack</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav>
+  <div class="footer-copy">© 2026 Younes Nazarian — Built with Python, passion, and persistence.</div>
+</div>
+</footer>
+
+<script>
+// scroll progress + nav bg + active dot + scroll hint
+const nav=document.getElementById('nav'),progress=document.getElementById('progress'),hint=document.getElementById('scrollHint');
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  progress.style.width=pct+'%';
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  if(hint) hint.style.opacity=window.scrollY>80?'0':'1';
+  // active section
+  const secs=['hero','about','skills','projects','process','contact'];
+  let cur='hero';
+  secs.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el && window.scrollY+120 >= el.offsetTop) cur=id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+// reveal
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// cursor
+const cursor=document.getElementById('cursor');
+if(cursor && window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+  document.querySelectorAll('a,button,.chip,.glass').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
+  });
+}
+// mobile
+const ham=document.getElementById('hamburger'),overlay=document.getElementById('mobileOverlay'),closeBtn=document.getElementById('closeMenu');
+ham.addEventListener('click',()=>overlay.classList.add('open'));
+closeBtn.addEventListener('click',()=>overlay.classList.remove('open'));
+overlay.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>overlay.classList.remove('open')));
+// stats count-up
+const countEl=document.querySelector('[data-count]');
+if(countEl){
+  const io2=new IntersectionObserver((ents)=>{
+    if(ents[0].isIntersecting){
+      let n=0,target=12;const t=setInterval(()=>{n++;countEl.textContent=n+'+';if(n>=target)clearInterval(t)},80);
+      io2.disconnect();
+    }
+  },{threshold:.5});
+  io2.observe(countEl.closest('.profile-stats'));
+}
+// case study accordions
+document.querySelectorAll('.case-toggle').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.preventDefault();
+    const acc=document.getElementById(btn.dataset.target);
+    acc.classList.toggle('open');
+  });
+});
+// panels parallax + fan
+(function(){
+  const panels=document.querySelectorAll('.panel');
+  if(!panels.length||window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let tx=0,ty=0,cx=0,cy=0,t=0;
+  document.addEventListener('mousemove',e=>{
+    tx=((e.clientX/window.innerWidth)-.5)*14;
+    ty=((e.clientY/window.innerHeight)-.5)*-10;
+  });
+  function loop(){
+    t+=0.008;cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;
+    const fan=Math.sin(t)*3;
+    const base=[-18,-6,8,20];
+    panels.forEach((p,i)=>{
+      const a=base[i]+fan;
+      p.style.transform=`translate(-50%,-50%) rotate(${a}deg) rotateY(${cx}deg) rotateX(${cy}deg) translateZ(${i*18}px)`;
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+// particles
+(function(){
+  const cvs=document.getElementById('particles');
+  if(!cvs||window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx=cvs.getContext('2d');let W,H,parts=[];
+  function resize(){W=cvs.width=cvs.parentElement.offsetWidth;H=cvs.height=cvs.parentElement.offsetHeight}
+  resize();addEventListener('resize',resize);
+  for(let i=0;i<40;i++) parts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.5,vy:-(Math.random()*.3+.08),vx:(Math.random()-.5)*.08,o:Math.random()*.04+.04});
+  (function frame(){ctx.clearRect(0,0,W,H);parts.forEach(p=>{p.y+=p.vy;p.x+=p.vx;if(p.y<-10){p.y=H+10;p.x=Math.random()*W}ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.o})`;ctx.fill()});requestAnimationFrame(frame)})();
+})();
+// form
+const form=document.getElementById('contactForm'),btn=document.getElementById('submitBtn'),status=document.getElementById('formStatus');
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!form.checkValidity()){status.textContent='Please fill all fields correctly.';status.style.color='#F87171';return}
+  btn.classList.add('loading');btn.querySelector('.btn-label').textContent='Sending…';
+  await new Promise(r=>setTimeout(r,1200));
+  btn.classList.remove('loading');btn.querySelector('.btn-label').textContent='Message received ✓';
+  status.textContent='Thanks — I will get back to you soon.';status.style.color='#6EE7A0';
+  form.reset();
+  setTimeout(()=>{btn.querySelector('.btn-label').textContent='Send Message';status.textContent=''},4000);
+});
+</script>
+</body>
+</html>
